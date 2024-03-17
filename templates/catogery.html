@@ -1,0 +1,15 @@
+<div class="col">
+      <div class="card h-100 category-card">
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ category.category }}</h5> 
+          <ul class="list-unstyled">
+            <li>Stocks: <span class="text-success">{{ category['stocks'] }}</span></li> <!-- Accessing stocks using dictionary key -->
+            <li>Ratings: <span class="text-warning">{{ category['ratings'] }}</span></li> <!-- Accessing ratings using dictionary key-->
+            <li>Reviews: <span class="text-info">{{ category['reviews'] }}</span></li> <!-- Accessing reviews using dictionary key -->
+            <li>Items: <span class="text-danger">{{ category['items'] }}</span></li> <!-- Accessing items using dictionary key -->
+          </ul>
+          <button class="btn btn-primary"> Shop now </button>
+        </div>
+      </div>
+    </div>
+
