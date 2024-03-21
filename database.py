@@ -1,4 +1,7 @@
 from sqlalchemy import create_engine,text
+import os
 
-engine = create_engine("mysql+pymysql://sql6693232:yDntHLHaqy@sql6.freesqldatabase.com/sql6693232?charset=utf8mb4")
+my_secret = os.environ['CONNECTION_STRING']
+
+engine = create_engine(my_secret)
 
