@@ -1,4 +1,6 @@
 from flask import Flask, render_template, jsonify
+from sqlalchemy import create_engine, text
+from database import engine
 
 app = Flask(__name__)
 
@@ -35,10 +37,29 @@ categories = [{
 }]
 
 
+def loadProductsFromDb():
+  with engine.connect() as conn:
+    result = conn.execute(
+        text("SELECT category, stocks, ratings, reviews, items FROM product"))
+    products = []
+    for row in result:
+      product_dict = {
+          "category":row[0],  
+          "stocks":row[1], 
+          "ratings": float(row[2]),
+          "reviews":row[3], 
+          "items": row[4] 
+      }
+      products.append(product_dict)
+    return products
+
+
 @app.route("/")
 def hello():
+
+  result = loadProductsFromDb()
   return render_template('home.html',
-                         cat=categories,
+                         cat=result,
                          GroceryName="Village super market")
 
 
